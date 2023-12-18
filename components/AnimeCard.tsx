@@ -1,30 +1,40 @@
+import { BASE_URL_IMAGE } from "@/constants";
+import { IAnimeGetResponse } from "@/types";
 import Image from "next/image";
+import { MotionDiv } from "./MotionDiv";
 
-export interface AnimeProp {
-  id: string;
-  name: string;
-  image: {
-    original: string;
-  };
-  kind: string;
-  episodes: number;
-  episodes_aired: number;
-  score: string;
-}
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
 interface Prop {
-  anime: AnimeProp;
+  anime: IAnimeGetResponse;
   index: number;
 }
 
-function AnimeCard({ anime }: Prop) {
+function AnimeCard({ anime, index }: Readonly<Prop>) {
   return (
-    <div className="max-w-sm rounded relative w-full">
+    <MotionDiv
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      transition={{
+        delay: index * 0.25,
+        ease: "easeInOut",
+        duration: 0.5,
+      }}
+      viewport={{
+        amount: 0,
+      }}
+      className="max-w-sm rounded relative w-full"
+    >
       <div className="relative w-full h-[37vh]">
         <Image
-          src={anime.image.original}
+          src={`${BASE_URL_IMAGE}${anime.image.original}`}
           alt={anime.name}
           fill
+          sizes="100%"
           className="rounded-xl"
         />
       </div>
@@ -64,7 +74,7 @@ function AnimeCard({ anime }: Prop) {
           </div>
         </div>
       </div>
-    </div>
+    </MotionDiv>
   );
 }
 
