@@ -62,6 +62,11 @@ function AnimeCard({ anime, index }: Readonly<Prop>) {
               {anime.episodes || anime.episodes_aired}
             </p>
           </div>
+          <div className="flex flex-row gap-2 items-center bg-neutral-800 rounded py-0.5 px-2 border-secondary border-solid">
+            <p className="text-base text-secondary font-bold uppercase">
+              {anime.status}
+            </p>
+          </div>
           <div className="flex flex-row gap-2 items-center">
             <Image
               src="./star.svg"
@@ -70,7 +75,7 @@ function AnimeCard({ anime, index }: Readonly<Prop>) {
               height={18}
               className="object-contain"
             />
-            <p className="text-base font-bold text-[#FFAD49]">{anime.score}</p>
+            <p className="text-base font-bold text-secondary">{anime.score}</p>
           </div>
         </div>
       </div>
