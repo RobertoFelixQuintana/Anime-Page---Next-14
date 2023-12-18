@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-let page = 1;
+let page = 2;
 
 export default function AnimeView() {
   const [data, setData] = useState<React.ReactElement[]>([]);
